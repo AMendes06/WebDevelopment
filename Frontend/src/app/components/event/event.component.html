@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (input)="filterEvents()"
+      placeholder="Search by event name or property">
+    <div class="date-input-container">
+      <input type="date" [(ngModel)]="startDate" (input)="filterEvents()" class="date-input">
+      <input type="date" [(ngModel)]="endDate" (input)="filterEvents()" class="date-input">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let event of getPaginatedEvents()">
+      <a [routerLink]="['/event', event._id]" class="card mb-3">
+        <img src="http://localhost:3000/images/test/{{ event.property?.image }}"
+          onerror="this.src='http://localhost:3000/images/test/not-found.png'" class="card-img-top img-fluid">
+        <div class="card-body">
+          <h3 class="card-title">{{ event.property?.propertyName }}</h3>
+          <h5 class="card-subtitle">{{ event.name }}</h5>
+          <p>Price: {{ event.price === 0 ? 'Free' : event.price + ' €' }}</p>
+          <p class="card-text"
+            [ngClass]="{ 'availability-green': event.availability, 'availability-red': !event.availability }">
+            {{ event.availability ? 'Available' : 'Not available' }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="pagination-container">
+    <button class="pagination-link" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>
+    <button class="pagination-link" [disabled]="currentPage === totalPages"
+      (click)="goToPage(currentPage + 1)">Next</button>
+  </div>
+</div>

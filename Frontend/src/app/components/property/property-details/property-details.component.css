@@ -1,0 +1,42 @@
+.property-card {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  }
+  
+  .property-card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  }
+  
+  .property-card p {
+  margin-bottom: 5px;
+  }
+  
+  .property-card .card-text:last-child {
+  margin-bottom: 0;
+  }
+  
+  .property-card .card-text label {
+  font-weight: bold;
+  }
+  
+  .property-card .card-text span {
+  display: inline-block;
+  margin-left: 10px;
+  }
+  
+  .property-card .card-text .availability {
+  font-weight: bold;
+  }
+  
+  .property-card .card-text .availability.available {
+  color: green;
+  }
+  
+  .property-card .card-text .availability.not-available {
+  color: red;
+  }

@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="event" class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5 mx-auto text-center">
+              <h2 class="card-title"><strong>{{ event.name }}</strong></h2>
+              <p class="card-text"><strong>Date:</strong> {{ event.date | date:'MM/dd/yyyy' }}</p>
+              <p class="card-text"><strong>Description:</strong> {{ event.description }}</p>
+              <p class="card-text"><strong>Price:</strong> {{ event.price }} €</p>
+              <p class="card-text"><strong>Capacity:</strong> {{ event.capacity }}</p>
+              <p class="card-text"
+                [ngClass]="{ 'availability-green': event.availability, 'availability-red': !event.availability }">
+                {{ event.availability ? 'Available' : 'Not available' }}
+              </p>
+
+              <div class="form-group form-sm">
+                <label for="ticket-type">Ticket Type</label>
+                <select id="ticket-type" class="form-control form-control-sm" [(ngModel)]="selectedTicketType"
+                  name="ticket-type" required>
+                  <option value="child">Child</option>
+                  <option value="adult">Adult</option>
+                  <option value="older">Older</option>
+                </select>
+              </div>
+
+              <div class="form-group form-sm">
+                <label for="ticket-quantity">Ticket Quantity</label>
+                <input type="number" id="ticket-quantity" class="form-control form-control-sm"
+                  [(ngModel)]="ticketQuantity" name="ticket-quantity" min="0" max="{{event.capacity}}" required>
+              </div>
+              
+              <div class="form-group d-flex align-items-center justify-content-center pt-2">
+                <div *ngIf="wrong">
+                  <div class="alert alert-danger mt-1 text-center" role="alert">{{ errorMessage }}</div>
+                </div>
+              </div>
+              <button type="button" [disabled]="!selectedTicketType || !ticketQuantity" class="btn"
+                (click)="createTicket()">Add To Cart</button>
+
+            </div>
+            <div class="col-md-6">
+              <h4 class="card-text"><strong> {{ event.property?.propertyName }}</strong></h4>
+              <p class="card-subtitle">
+                <strong>Address: </strong>
+                <a href="https://www.google.com/maps/place/{{event.property?.address}}"
+                  target="_blank">{{event.property?.address}}</a>
+              </p>
+
+              <img src="http://localhost:3000/images/test/{{ event.property?.image }}"
+                onerror="this.src='http://localhost:3000/images/test/not-found.png'" class="card-img-top img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

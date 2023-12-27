@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <%- include('header') %>
+
+  <div class="container">
+    <h1>Tickets</h1>
+    <button onclick="window.location.href='/api/createTicket'">Buy Ticket</button>
+    <h1>All Tickets</h1>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search tickets by client email...">
+      <button onclick="searchTickets()">Search</button>
+    </div>
+    <br>
+
+    <% if (tickets.length > 0) { %>
+      <div class="row">
+        <% tickets.forEach(function(ticket, index) { %>
+          <div class="card">
+            <p>Email Client: <%= ticket.client%></p>
+            <p>Name Employee: <%= ticket.employee ? ticket.employee.firstName : 'Non Exist' %></p>
+            <% if (ticket.tickets && ticket.tickets.length > 0 && ticket.tickets[0].event) { %>
+              <p>Event: <%= ticket.tickets[0].event.name %></p>
+            <% } else { %>
+              <p>Event: Not Found</p>
+            <% } %>
+            <% ticket.tickets.forEach(function(ticketType) { %>
+              <p><%= ticketType.type %> Tickets: <%= ticketType.quantity %></p>
+            <% }) %>
+            <p>Total price: <%= ticket.totalPrice %></p>
+            <p>Purchase Date: <%= ticket.purchaseDate %></p>
+          </div>
+    
+          <% if ((index + 1) % 3 === 0 || index === tickets.length - 1) { %>
+            </div>
+            <% if (index !== tickets.length - 1) { %>
+              <div class="row">
+            <% } %>
+          <% } %>
+        <% }) %>
+      </div>
+    <% } %>
+    
+  
+
+  <script>
+    function searchTickets() {
+      var input = document.getElementById("searchInput").value.toLowerCase();
+      var cards = document.getElementsByClassName("card");
+
+      for (var i = 0; i < cards.length; i++) {
+        var clientEmail = cards[i].querySelector("p:nth-child(1)").innerText.toLowerCase();
+        if (clientEmail.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

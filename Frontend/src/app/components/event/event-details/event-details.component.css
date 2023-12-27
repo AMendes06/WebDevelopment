@@ -1,0 +1,97 @@
+.container {
+  margin-top: 60px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card-body {
+  padding: 20px;
+  min-height: 32rem; 
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 20rem;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #fd5e53;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+.availability-green {
+  color: green;
+}
+
+.availability-red {
+  color: red;
+}
+
+@media (max-width: 767.98px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+
+  .card-body {
+    height: auto; 
+  }
+  .container {
+    margin-bottom: 60px;
+  }
+}
+

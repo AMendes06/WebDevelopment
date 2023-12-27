@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styleRegister.css" />
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo" />
+            <h1>Henrique & Angelo</h1>
+        </div>
+        <nav>
+            <a href="/api/logout">Logout</a>
+            <a href="/api/property">Property</a>
+            <a href="/api/event">Events</a>
+            <a href="/api/ticket">Tickets</a>
+            <a href="/api/client">Costumer</a>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Management Event</h1>
+        <div>
+            <h2>Add event</h2>
+            <form method="POST" action="/api/createEvent">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required />
+
+                <label for="date">Date:</label>
+                <input type="date" name="date" id="date" required />
+
+                <label for="description">Description:</label>
+                <textarea type="textarea" name="description" id="description" required></textarea>
+
+                <label for="price:">Price: </label>
+                <input type="number" name="price" id="price" required />
+
+                <label for="propertyName">Choose Property:</label>
+                <select name="propertyName" id="propertyName" type = 'propertyName'>
+                  <% for (let i=0; i < properties.length; i++) { %>
+                    <option value="<%= properties[i].propertyName %>">
+                      <%= properties[i].propertyName %>
+                    </option>
+                  <% } %>
+                </select>
+                <% if ( typeof message !== 'undefined' && message) { %>
+                    <p><%= message %></p>
+                <% } %>
+
+                <button type="submit">Add Event</button>
+            </form>
+
+            <button><a href="/api/event/" style="text-decoration:none;">Back to Events</a></button>
+        </div>
+    </div>

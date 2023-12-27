@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Clients</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/styleProperty.css" />
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="/images/logo.png" alt="Logo" />
+      <h1>Henrique & Angelo</h1>
+    </div>
+    <nav>
+      <a href="/api/logout">Logout</a>
+      <a href="/api/property">Property</a>
+      <a href="/api/event">Events</a>
+      <a href="/api/ticket">Tickets</a>
+      <a href="/api/client">Costumer</a>
+      <a href = "/api/updateDiscount">Discounts</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Costumer:</h1>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search clients by email...">
+      <button onclick="searchClients()">Search</button>
+    </div>
+    <button onclick="window.location.href='/api/createClient'">Add new Costumer</button>
+    <br>
+    <h2>All Costumers:</h2>
+    <% if (client.length> 0) { %>
+      <% for (let i=0; i < client.length; i++) { %>
+        <% if (i % 3===0) { %>
+          <div class="row">
+            <% } %>
+              <div class="card">
+                <p>First Name: <%= client[i].firstName %>
+                </p>
+                <p>Last Name: <%= client[i].lastName %>
+                </p>
+                <p>Email: <%= client[i].emailClient %>
+                </p>
+                <p>Contact: <%= client[i].contact %>
+                </p>
+                <p>NIF: <%= client[i].nif %>
+                </p>
+                <div class="container-quest">
+                  <a class="btn" href="/api/refactorClient/<%= client[i]._id %>" style="text-decoration:none;">Edit
+                    Costumer</a>
+                  <a class="btn btn-delete" href="#" data-client-id="<%= client[i]._id %>"
+                    style="text-decoration:none;">Delete Costumer</a>
+                </div>
+              </div>
+              <% if ((i + 1) % 4===0) { %>
+          </div>
+          <% } %>
+            <% } %>
+              <% if (client.length % 4 !==0) { %>
+  </div>
+  <% } %>
+    <% } %>
+      </div>
+
+      <div id="confirmationPopup" class="popup">
+        <h2>Confirm delete</h2>
+        <p>Want delete costumer ?</p>
+        <div class="buttons">
+          <button id="confirmDeleteBtn">Confirm</button>
+          <button id="cancelDeleteBtn">Cancel</button>
+        </div>
+      </div>
+
+      <script>
+        var deleteBtns = document.querySelectorAll('.btn-delete');
+        var confirmationPopup = document.getElementById('confirmationPopup');
+        var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        var clientIdToDelete;
+
+        for (var i = 0; i < deleteBtns.length; i++) {
+          deleteBtns[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            clientIdToDelete = this.getAttribute('data-client-id');
+            confirmationPopup.style.display = 'block';
+          });
+        }
+
+        confirmDeleteBtn.addEventListener('click', function () {
+          window.location.href = '/api/deleteClient/' + clientIdToDelete;
+        });
+
+        cancelDeleteBtn.addEventListener('click', function () {
+          confirmationPopup.style.display = 'none';
+        });
+
+        function searchClients() {
+          var input = document.getElementById("searchInput").value.toLowerCase();
+          var cards = document.getElementsByClassName("card");
+
+          for (var i = 0; i < cards.length; i++) {
+            var clientEmail = cards[i].querySelector("p:nth-child(3)").innerText.toLowerCase();
+            if (clientEmail.includes(input)) {
+              cards[i].style.display = "block";
+            } else {
+              cards[i].style.display = "none";
+            }
+          }
+        }
+      </script>
+</body>
+
+</html>

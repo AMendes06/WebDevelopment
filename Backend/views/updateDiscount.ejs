@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Property</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styleRegister.css" />
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo" />
+            <h1>Henrique & Angelo</h1>
+        </div>
+        <nav>
+            <a href="/api/logout">Logout</a>
+            <a href="/api/property">Property</a>
+            <a href="/api/event">Events</a>
+            <a href="/api/ticket">Tickets</a>
+            <a href="/api/client">Costumer</a>
+            <a href="/api/updateDiscount">Discounts</a>
+        </nav>
+    </header>
+
+    <body>
+        <div class="container">
+            <h1>Update Discounts and Points</h1>
+            <form action="/api/updateDiscount" method="POST">
+                <p>Set the amount of discount to apply on type of tickets</p>
+                <label for="discountChild">Discount Child: </label>
+                <input type="Number" id="discountChild" name="discountChild" min=0 max=100
+                    placeholder="Number Between 0 and 100">
+
+                <label for="discountAdult">Discount Adult:</label>
+                <input type="Number" id="discountAdult" name="discountAdult" min=0 max=100
+                    placeholder="Number Between 0 and 100">
+
+                <label for="discountOlder">Discount Older:</label>
+                <input type="Number" id="discountOlder" name="discountOlder" min=0 max=100
+                    placeholder="Number Between 0 and 100">
+                <p>This number will multiply with spend value by Costumer </p>
+                <label for="systemPoints">System Points:</label>
+                <input type="Number" id="systemPoints" name="systemPoints" min="0" placeholder="Number bigger than 0">
+
+
+
+                <button type="submit">Update Discount and Points</button>
+
+                <% if (typeof message !=='undefined' && message) { %>
+                    <p>
+                        <%= message %>
+                    </p>
+                    <% } %>
+            </form>
+        </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" (input)="filterProperties()"
+      placeholder="Search by property name or address">
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let property of getPaginatedProperties()">
+      <a class="card mb-3">
+        <img src="http://localhost:3000/images/test/{{ property.image }}"
+          onerror="this.src='http://localhost:3000/images/test/not-found.png'" class="card-img-top img-fluid">
+        <div class="card-body">
+          <h3 class="card-title">{{ property.propertyName }}</h3>
+          <p class="card-subtitle">
+            <strong>Address: </strong>
+            <a href="https://www.google.com/maps/place/{{property?.address}}" target="_blank">{{property?.address}}</a>
+          </p>
+          <p class="card-text">{{ property.description }}</p>
+          <p class="card-text"><strong>Capacity: </strong>{{ property.capacity }}</p>
+          <p class="card-text"
+            [ngClass]="{ 'availability-green': property.availability, 'availability-red': !property.availability }">
+            {{ property.availability ? 'Available' : 'Not available' }}
+          </p>
+          <a class="btn" [routerLink]="['/property', property.propertyName]">See Events</a>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="pagination-container">
+    <button class="pagination-link" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>
+    <button class="pagination-link" [disabled]="currentPage === totalPages"
+      (click)="goToPage(currentPage + 1)">Next</button>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Property</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styleProperty.css" />
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/images/logo.png" alt="Logo" />
+            <h1>Henrique & Angelo</h1>
+        </div>
+        <nav>
+            <a href="/api/logout">Logout</a>
+            <a href="/api/property">Property</a>
+            <a href="/api/event">Events</a>
+            <a href="/api/ticket">Tickets</a>
+            <a href="/api/client">Costumer</a>
+            <a href = "/api/updateDiscount">Discounts</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Property Details</h1>
+        <h2>Name: <%= property.propertyName %>
+        </h2>
+        <img src="/images/test/<%= property.image %>" width="300" height="230">
+        <% if (property.street) { %>
+            <p>Street: <%= property.street %>
+            </p>
+            <% } %>
+                <% if (property.postalCode) { %>
+                    <p>Postal Code: <%= property.postalCode %>
+                    </p>
+                    <% } %>
+                        <% if (property.city) { %>
+                            <p>City: <%= property.city %>
+                            </p>
+                            <% } %>
+                                <% if (property.country) { %>
+                                    <p>Country: <%= property.country %>
+                                    </p>
+                                    <% } %>
+                                        <% if (property.description) { %>
+                                            <p>Description: <%= property.description %>
+                                            </p>
+                                            <% } %>
+                                                <% if (property.capacity) { %>
+                                                    <p>Capacity: <%= property.capacity %>
+                                                    </p>
+                                                    <% } %>
+                                                        <% if (property.availability) { %>
+                                                            <p>Availability: <%= property.availability %>
+                                                            </p>
+                                                            <% } %>
+    </div>
+
+</body>
+
+</html>

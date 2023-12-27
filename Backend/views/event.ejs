@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('header') %>
+
+    <div class="container">
+        <h1>All events</h1>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Search events...">
+            <button onclick="searchEvents()">Search</button>
+        </div>
+        <button onclick="window.location.href='/api/createEvent'">Add new event</button>
+        <br>
+        <h2>Events:</h2>
+        <% if (events.length > 0) { %>
+            <% for (let i = 0; i < events.length; i++) { %>
+                <% if (i % 3 === 0) { %>
+                    <div class="row">
+                <% } %>
+                <div class="card">
+                    <h3>Name: <%= events[i].name %></h3>
+                    <p>Price: <%= events[i].price %></p>
+                    <p>Capacity: <%= events[i].capacity %></p>
+                    <p>Description: <%= events[i].description %></p>
+                    <p>Property: <%= events[i].property.propertyName %></p>
+                    <div class="container-quest">
+                        <a class="btn" href="/api/refactorEvent/<%= events[i]._id %>" style="text-decoration:none;">Edit Event</a>
+                        <a class="btn btn-delete" href="#" data-event-id="<%= events[i]._id %>" style="text-decoration:none;">Delete Event</a>
+                    </div>
+                </div>
+                <% if ((i + 1) % 4 === 0) { %>
+                    </div>
+                <% } %>
+            <% } %>
+            <% if (events.length % 4 !== 0) { %>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+    <div id="confirmationPopup" class="popup">
+        <h2>Confirm Delete</h2>
+        <p>Want to delete the event?</p>
+        <div class="buttons">
+            <button id="confirmDeleteBtn">Confirm</button>
+            <button id="cancelDeleteBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        var deleteBtns = document.querySelectorAll('.btn-delete');
+        var confirmationPopup = document.getElementById('confirmationPopup');
+        var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+        var eventIdToDelete;
+
+        for (var i = 0; i < deleteBtns.length; i++) {
+            deleteBtns[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                eventIdToDelete = this.getAttribute('data-event-id');
+                confirmationPopup.style.display = 'block';
+            });
+        }
+
+        confirmDeleteBtn.addEventListener('click', function() {
+            window.location.href = '/api/deleteEvent/' + eventIdToDelete;
+        });
+
+        cancelDeleteBtn.addEventListener('click', function() {
+            confirmationPopup.style.display = 'none';
+        });
+
+        function searchEvents() {
+            var input = document.getElementById("searchInput").value.toLowerCase();
+            var cards = document.getElementsByClassName("card");
+
+            for (var i = 0; i < cards.length; i++) {
+                var eventName = cards[i].querySelector("h3").innerText.toLowerCase();
+                if (eventName.includes(input)) {
+                    cards[i].style.display = "block";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

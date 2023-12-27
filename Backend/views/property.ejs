@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <%- include('header') %>
+
+  <div class="container">
+    <h1>All properties</h1>
+    <h2>Search properties:</h2>
+    <input type="text" id="propertySearchInput" placeholder="Enter property name">
+    <button onclick="searchProperties()">Search</button>
+
+    <button onclick="window.location.href='/api/createProperty'">Add new property</button>
+    <br>
+    <h2>Properties:</h2>
+    <% if (properties.length > 0) { %>
+      <% for (let i = 0; i < properties.length; i++) { %>
+        <% if (i % 3 === 0) { %>
+          <div class="row">
+        <% } %>
+        <div class="card_property">
+          <h3>Name: <%= properties[i].propertyName %></h3>
+          <a href="/api/detailProperty/<%= properties[i]._id %>">
+            <img src="/images/test/<%= properties[i].image %>" width="300x" height="230x">
+          </a>
+          
+          <% if (properties[i].city) { %>
+            <p>City: <%= properties[i].city %></p>
+          <% } %>
+   
+          <% if (properties[i].country) { %>
+            <p>Country: <%= properties[i].country %></p>
+          <% } %>
+          
+          <% if (properties[i].availability) { %>
+            <p>Availability: <%= properties[i].availability %></p>
+          <% } %>
+                   
+          <div class="container-quest">
+            <a class="btn" href="/api/refactorProperty/<%= properties[i]._id %>" style="text-decoration:none;">Edit Property</a>
+            <a class="btn btn-delete" href="#" data-property-id="<%= properties[i]._id %>" style="text-decoration:none;">Delete Property</a>
+          </div>
+        </div>
+        <% if ((i + 1) % 4 === 0) { %>
+          </div>
+        <% } %>
+      <% } %>
+      <% if (properties.length % 4 !== 0) { %>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
+
+  <div id="confirmationPopup" class="popup">
+    <h2>Delete Confirm</h2>
+    <p>Are you sure you want to delete the property?</p>
+    <div class="buttons">
+      <button id="confirmDeleteBtn">Confirm</button>
+      <button id="cancelDeleteBtn">Cancel</button>
+    </div>
+  </div>
+  
+  <script>
+    var deleteBtns = document.querySelectorAll('.btn-delete');
+    var confirmationPopup = document.getElementById('confirmationPopup');
+    var confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    var cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+    var propertyIdToDelete;
+
+    for (var i = 0; i < deleteBtns.length; i++) {
+      deleteBtns[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        propertyIdToDelete = this.getAttribute('data-property-id');
+        confirmationPopup.style.display = 'block';
+      });
+    }
+
+    confirmDeleteBtn.addEventListener('click', function() {
+      window.location.href = '/api/deleteProperty/' + propertyIdToDelete;
+    });
+
+    cancelDeleteBtn.addEventListener('click', function() {
+      confirmationPopup.style.display = 'none';
+    });
+
+    function searchProperties() {
+      var input = document.getElementById('propertySearchInput').value;
+      var propertyCards = document.querySelectorAll('.card_property');
+
+      for (var i = 0; i < propertyCards.length; i++) {
+        var propertyName = propertyCards[i].querySelector('h3').innerText;
+        if (propertyName.toLowerCase().includes(input.toLowerCase())) {
+          propertyCards[i].style.display = 'block';
+        } else {
+          propertyCards[i].style.display = 'none';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Property</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/styleRegister.css" />
+  <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="/images/logo.png" alt="Logo" />
+      <h1>Henrique & Angelo</h1>
+    </div>
+    <nav>
+      <a href="/api/logout">Logout</a>
+      <a href="/api/property">Property</a>
+      <a href="/api/event">Events</a>
+      <a href="/api/ticket">Tickets</a>
+      <a href="/api/client">Client</a>
+      <a href="/api/updateDiscount">Discounts</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Sell Tickets</h1>
+    <div>
+      <form method="POST" action="/api/createTicket">
+
+        <label> Email Employee: </label>
+        <input type="text" name="employee" id="employee" value="<%= email %>" />
+
+        <label for="registerToggle">Select Box for non Register Costumer:</label>
+        <input type="checkbox" id="registerToggle" onchange="toggleCustomerFields()" />
+        <br />
+
+
+        <label for="client">Choose Customer:</label>
+        <select name="emailClient" id="emailClient" type="text">
+          <% for (let i=0; i < clients.length; i++) { %>
+            <option value="<%= clients[i].emailClient %>">
+              <%= clients[i].emailClient %>
+            </option>
+            <% } %>
+        </select>
+
+    </div>
+
+    <label for="event">Choose Event:</label>
+    <select name="eventId" id="eventId" type="text" required>
+      <% for (let i=0; i < events.length; i++) { %>
+        <option value="<%= events[i]._id %>">
+          <%= events[i].name %>
+        </option>
+        <% } %>
+    </select>
+
+
+    <label for="ticketChild">Child (less than 12 years):</label>
+    <input type="number" id="ticketChild" name="ticketQuantity.child" min="0" value="0" required><br>
+
+    <label for="ticketAdult">Adult (between 12 and 64 years):</label>
+    <input type="number" id="ticketAdult" name="ticketQuantity.adult" min="0" value="0" required><br>
+
+    <label for="ticketOlder">Older (more than 64 years):</label>
+    <input type="number" id="ticketOlder" name="ticketQuantity.older" min="0" value="0" required><br>
+
+    <% if (typeof message !=='undefined' && message) { %>
+      <p>
+        <%= message %>
+      </p>
+      <% } %>
+
+        <button type="submit" onclick="return validateTicketFields()">Buy Ticket</button>
+        </form>
+  </div>
+  </div>
+
+
+
+
+  <script>
+    function validateTicketFields() {
+      var ticketChild = parseInt(document.getElementById('ticketChild').value);
+      var ticketAdult = parseInt(document.getElementById('ticketAdult').value);
+      var ticketOlder = parseInt(document.getElementById('ticketOlder').value);
+
+      if (ticketChild === 0 && ticketAdult === 0 && ticketOlder === 0) {
+        alert('Please enter at least one ticket quantity greater than 0.');
+        return false;
+      }
+
+      if (ticketChild < 0 || ticketAdult < 0 || ticketOlder < 0) {
+        alert('Ticket quantities cannot be negative.');
+        return false;
+      }
+
+      return true;
+    }
+
+    function toggleCustomerFields() {
+      var customerFields = document.getElementById("customerFields");
+      var registerToggle = document.getElementById("registerToggle");
+
+      if (registerToggle.checked) {
+        customerFields.style.display = "none";
+      } else {
+        customerFields.style.display = "block";
+      }
+    }
+
+  </script>
+</body>
+
+</html>

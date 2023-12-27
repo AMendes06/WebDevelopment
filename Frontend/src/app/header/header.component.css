@@ -1,0 +1,87 @@
+.navbar {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  height: 60px;
+}
+
+.btn {
+  color: #fdfdfd;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.2);
+  color: #9b9b9b;
+  border-bottom: 2px solid #9b9b9b;
+}
+
+.navbar-toggler-icon{
+  background-color: rgb(255, 255, 255);
+  border-radius: 30%;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fdfdfd;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #9b9b9b;
+}
+
+.navbar-container {
+  padding-right: 10px;
+}
+
+.item-dropdown {
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+.list-dropdown {
+  padding: 5px 5px;
+  width: 210px;
+}
+
+.item-dropdown:active {
+  background-color: gray;
+}
+
+#specific-dropdown {
+  width: 370px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-price {
+  color: #888;
+}
+
+.item-remove {
+  color: #ff0000;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.item-remove:hover {
+  color: #cc0000;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .show>.nav-link{
+  color: #fdfdfd;
+}

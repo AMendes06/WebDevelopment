@@ -1,0 +1,60 @@
+<div class="cart-container">
+  <h3>Cart Information</h3>
+
+  <div *ngIf="!cart" class="form-group d-flex align-items-center justify-content-center">
+    <h6>Cart Empty!</h6>
+  </div>
+
+  <table *ngIf="cart" class="table cart-table">
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Ticket Type</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of cart.tickets">
+        <td>{{ ticket.event }}</td>
+        <td>
+          <ul class="ticket-list">
+            <li>{{ ticket.type }}</li>
+          </ul>
+        </td>
+        <td>{{ ticket.quantity }}</td>
+        <td>{{ ticket.price }} € <small>each</small></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="cart" class="total-price">
+    <strong>Total Price:</strong> {{ cart.totalPrice }} €
+  </p>
+  
+  <div *ngIf="cart" class="purchase-info">
+    <div class="form-group">
+      <label for="use-points">Use Points:</label>
+      <input id="use-points" type="checkbox" [(ngModel)]="cart.usePoints">
+    </div>
+
+    <div *ngIf="cart.usePoints">
+      <label for="points-to-spend">Points to Spend:</label>
+      <input id="points-to-spend" type="number" min="0" max="200" [(ngModel)]="cart.pointsToSpend">
+      <button id="points" class="btn" type="submit" (click)="toUsePoints()">Use Points</button>
+    </div>
+  </div>
+
+  <div class="form-group d-flex align-items-center justify-content-center pt-2">
+  <div *ngIf="wrong">
+    <div class="alert alert-danger mt-1 text-center" role="alert">{{ errorMessage }}</div>
+  </div>
+</div>
+
+  <div class="purchase-buttons">
+    <button class="btn" type="submit" (click)="checkoutCart()">Purchase</button>
+    <button class="btn btn-secondary purchase-btn" id="cancelButton" type="submit" (click)="cancelCart()">Cancel</button>
+  </div>
+</div>
+
+

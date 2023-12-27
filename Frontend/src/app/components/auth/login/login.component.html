@@ -1,0 +1,53 @@
+<body>
+    <div class="container-fuild p-0 mt-2">
+        <div class="container">
+            <p class="text-center display-6 mt-3 mb-3">Login</p>
+            <div>
+                <form #formData="ngForm">
+                    <div class="form-group d-flex align-items-center justify-content-center mb-3 pt-3">
+                        <div class="col-sm-6">
+                            <input type="text" required class="form-control" id="inputEmail" placeholder="Email"
+                                name="email" [(ngModel)]="emailClient" #emailControl="ngModel" ngModel [email]="true">
+                            <div *ngIf="emailControl.touched && !emailControl.valid">
+                                <div *ngIf="emailControl.errors?.['required']">
+                                    <div class="alert alert-danger mt-1 text-center" role="alert">Required field!</div>
+                                </div>
+                            </div>
+                            <div *ngIf="emailControl.touched && !emailControl.valid">
+                                <div *ngIf="emailControl.errors?.['email']">
+                                    <div class="alert alert-danger mt-1" role="alert">Invalid email!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group d-flex align-items-center justify-content-center pt-2">
+                        <div class="col-sm-6">
+                            <input type="password" required class="form-control" id="inputPassword"
+                                placeholder="Password" name="password" [(ngModel)]="password" #passwordControl="ngModel"
+                                minlength="8">
+                            <div *ngIf="passwordControl.touched && !passwordControl.valid">
+                                <div *ngIf="passwordControl.errors?.['required']">
+                                    <div class="alert alert-danger mt-1 text-center" role="alert">Required field!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-center pt-2">
+                        <div *ngIf="wrong">
+                            <div class="alert alert-danger mt-1 text-center" role="alert">{{errorMessage}}</div>
+                        </div>
+                    </div>
+                    <div class="buttonDiv d-grid mt-4">
+                        <button type="button" [disabled]="!emailControl.valid || !passwordControl.valid"
+                            class="btn btn-primary" (click)="login()">Sign in</button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4">
+                    <a href="register" class="signUpRouter">Don't have an account? Sign up here!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

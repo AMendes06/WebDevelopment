@@ -1,0 +1,55 @@
+<body>
+	<header class="hero">
+	  <div class="hero-content">
+		<h1>Welcome to our Webpage Events</h1>
+		<p>Discover amazing events happening online.</p>
+		<a class="btn" href="/event">Browse Events</a>
+	  </div>
+	</header>
+  
+	<section class="featured-events">
+	  <div class="container">
+		<h2>Featured Events</h2>
+		<div class="row">
+		  <div class="col-md-4" *ngFor="let event of events">
+			<div class="product">
+			  <img [src]="'http://localhost:3000/images/test/' + event.property?.image" onerror="this.src='http://localhost:3000/images/test/not-found.png'" alt="Product">
+			  <h3>{{ event.name }}</h3>
+			  <p [ngClass]="{ 'availability-green': event.availability, 'availability-red': !event.availability }">
+				{{ event.availability ? 'Available' : 'Not available' }}
+			  </p>
+			  <p><strong>Price:</strong> {{ event.price === 0 ? 'Free' : event.price + ' €' }}</p>
+			  <a class="btn" [routerLink]="['/event', event._id]">Buy Now</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+	<section class="carousel-section">
+		<div class="container">
+		  <h2 class="text-center">Featured Properties</h2>
+		  <div class="carousel-container">
+			<carousel>
+			  <slide *ngFor="let prop of properties">
+				<div class="slide-content">
+				  <a [routerLink]="['/property', prop.propertyName]">
+					<img src="http://localhost:3000/images/test/{{ prop.image }}" alt="slide image"/>
+				  </a>
+				  <div class="carousel-caption">
+					<h3>{{ prop.propertyName }}</h3>
+					<p>{{ prop.address }}</p>
+					<p>{{ prop.description }}</p>
+				  </div>
+				</div>
+			  </slide>
+			</carousel>
+		  </div>
+		</div>
+	  </section>
+	  
+	  
+	<footer class="footer">
+	  <p>&copy; 2023 Shop. All rights reserved.</p>
+	</footer>
+  </body>
+  

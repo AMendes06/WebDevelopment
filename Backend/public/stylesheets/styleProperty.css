@@ -1,0 +1,214 @@
+/* Style for formulary page */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e8f5e9;
+  font-family: "Calibri", sans-serif;
+}
+
+.property-container {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 30%;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  margin-right: 10px;
+  left: 0;
+}
+
+
+.property-container h2 {
+  color: #2e8b57;
+  font-size: 25px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+
+.property-container form p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.property-container form input[type="text"],
+.property-container form textarea{
+  border: 2px solid #2e8b57;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-bottom: 5%;
+  padding: 10px;
+  width: 100%;
+}
+
+.container form button[type="submit"] {
+  display: block;
+  width: 30%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form input[type="number"] {
+  border: 2px solid #2e8b57;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.container button,
+button
+ {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* estilo para cada card */
+.card {
+  display: inline-block;
+  width: 300px;
+  height: 20%;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card_property {
+  display: inline-block;
+  width: 300px;
+  height: 600px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px #aaa;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* estilo para as filas de cards */
+.row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* estilo para o container geral */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.btn {
+  display: block;
+  width: 35%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin: 10px;
+}
+
+/* Style for the header */
+
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100px;
+  margin-right: 50px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 20px;
+  text-decoration: none;
+  padding: 10px;
+}
+
+nav a:hover {
+  text-decoration: #ddd;
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  display: none;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+#confirmDeleteBtn {
+  background-color: #4caf50;
+  color: #fff;
+  width: 100px;
+}
+
+#cancelDeleteBtn {
+  background-color: #ccc;
+  color: #fff;
+  width: 100px;
+
+}
+
+

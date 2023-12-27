@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="tickets-container">
+          <ng-container *ngFor="let ticket of tickets">
+            <ng-container *ngFor="let subTicket of generateSubTickets(ticket)">
+              <div class="ticket">
+                <div class="ticket-content">
+                  <div class="ticket-header">
+                    <h2>Tickets Online</h2>
+                  </div>
+                  <div class="ticket-details">
+                    <h3 class="ticket-title">{{ subTicket.event.name }}</h3>
+                    <h4 class="ticket-subtitle">{{ subTicket.event.property.propertyName}}</h4>
+                    <div class="ticket-info">
+                      <p><strong>Type:</strong> {{ subTicket.type }}</p>
+                      <p><strong>Quantity:</strong> {{ subTicket.quantity }}</p>
+                      <p><strong>Date:</strong> {{ subTicket.event.date  | date:'MM/dd/yyyy'}}</p>
+                      <p><strong>Price:</strong> {{ subTicket.price }} €</p>
+                    </div>
+                    <div class="ticket-barcode">
+                      <img src="../../../assets/barcode.png" alt="Ticket Barcode" class="barcode-image">
+                    </div>
+                    <p class="ticket-number">Ticket #: {{ generateTicketNumber() }}</p>
+                    <p class="seat-info">Seat: {{ generateSeatInfo() }}</p>
+                    <div class="ticket-footer">
+                      <p class="disclaimer"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  
